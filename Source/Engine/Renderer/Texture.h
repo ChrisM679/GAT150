@@ -2,6 +2,7 @@
 #include "Resources/Resource.h"
 #include "Math/Vector2.h"
 #include <string>
+#include <SDL3/SDL.h>
 
 namespace viper {
 	class Texture : public Resource {
