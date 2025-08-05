@@ -12,8 +12,10 @@
 #include "Input/InputSystem.h"
 #include "Framework/Scene.h"
 #include "Engine.h"
+#include "Resources/ResourceManager.h"
 #include "Renderer/Font.h"
 #include "Renderer/Text.h"
+#include "Renderer/Texture.h"
 
 #include "Game/Player.h"
 #include "Game/SpaceGame.h"
@@ -38,6 +40,8 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < 100; i++) {
         stars.push_back(viper::vec2{ viper::random::getReal() * 1280, viper::random::getReal() * 1024 });
     }
+
+    auto texture = viper::ResourceManager::Instance().Get<viper::Texture>("kohler.jpg", viper::GetEngine().GetRenderer());
 
     SDL_Event e;
     bool quit = false;
@@ -66,6 +70,9 @@ int main(int argc, char* argv[]) {
 		// Draw stars
         viper::vec2 speed{ -140.0f, 0.0f };
         float length = speed.Length();
+
+        viper::GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30);
+
 
         for (auto& star : stars) {
             star += speed * viper::GetEngine().GetTime().GetDeltaTime();
