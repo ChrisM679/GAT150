@@ -14,14 +14,12 @@ namespace viper {
 		All = Info | Warning | Error | Debug
 	};
 
-	// need to cast LogLevel a and b to uint8_t to perform | (or) operation, then cast back to LogLevel
 	inline LogLevel operator | (LogLevel a, LogLevel b) {
-		return (static_cast to LogLevel)(<cast a to uint8_t> | <cast b to uint8_t>);
+		return static_cast<LogLevel>(static_cast<uint8_t>(a) | static_cast<uint8_t>(b));
 	}
 
-	// need to cast LogLevel a and b to uint8_t to perform & (and) operation, then cast back to LogLevel
 	inline LogLevel operator & (LogLevel a, LogLevel b) {
-		return (static_cast to LogLevel)(<cast a to uint8_t> &<cast b to uint8_t>);
+		return static_cast<LogLevel>(static_cast<uint8_t>(a) & static_cast<uint8_t>(b));
 	}
 
 	class Logger {
