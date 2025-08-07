@@ -187,6 +187,7 @@
     <ClInclude Include="Core\File.h" />
     <ClInclude Include="Core\Logger.h" />
     <ClInclude Include="Core\Random.h" />
+    <ClInclude Include="Core\Singleton.h" />
     <ClInclude Include="Core\StringHelper.h" />
     <ClInclude Include="Core\Time.h" />
     <ClInclude Include="Engine.h" />

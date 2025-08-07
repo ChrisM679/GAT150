@@ -145,5 +145,8 @@
     <ClInclude Include="Core\Logger.h">
       <Filter>Source\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Singleton.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,11 +6,6 @@
 
 namespace viper {
 
-	Engine& GetEngine() {
-		static Engine engine;
-		return engine;
-	}
-
 	bool Engine::Initialize() {
 		m_renderer = std::make_unique<viper::Renderer>();
 		m_renderer->Initialize();

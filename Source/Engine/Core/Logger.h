@@ -62,7 +62,7 @@ namespace viper {
 			const std::string reset = "\033[0m";
 			std::string output = color + prefix + message + reset;
 
-			Logger::Error("SDL_Init Error: {}", SDL_GetError());
+			std::cerr << output;
 		}
 
 		template<typename... Args>

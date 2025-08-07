@@ -18,9 +18,9 @@ bool SpaceGame::Initialize()
 {
     m_scene = std::make_unique<viper::Scene>(this);
 
-	m_titleText = std::make_unique<viper::Text>(viper::ResourceManager::Instance().Get<viper::Font>("MetalLord.ttf", 128.0f));
-	m_scoreText = std::make_unique<viper::Text>(viper::ResourceManager::Instance().Get<viper::Font>("MetalLord.ttf", 48.0f));
-	m_livesText = std::make_unique<viper::Text>(viper::ResourceManager::Instance().Get<viper::Font>("MetalLord.ttf", 48.0f));
+	m_titleText = std::make_unique<viper::Text>(viper::Resources().GetWithID<viper::Font>("title_font", "fonts/MetalLord.ttf", 128.0f));
+	m_scoreText = std::make_unique<viper::Text>(viper::Resources().GetWithID<viper::Font>("ui_font", "fonts/MetalLord.ttf", 48.0f));
+	m_livesText = std::make_unique<viper::Text>(viper::Resources().GetWithID<viper::Font>("ui_font", "fonts/MetalLord.ttf", 48.0f));
 
     return true;
 }
@@ -50,9 +50,9 @@ void SpaceGame::Update(float dt)
         m_scene->RemoveAllActors();
 
         // create player
-        std::shared_ptr<viper::Model> model = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 0.0f, 0.4f, 1.0f });
+        //std::shared_ptr<viper::Model> model = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 0.0f, 0.4f, 1.0f });
         viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f, viper::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 5 };
-        auto player = std::make_unique<Player>(transform, model);
+        auto player = std::make_unique<Player>(transform, viper::Resources().Get<viper::Texture>("textures/playership.png", viper::GetEngine().GetRenderer()));
         player->speed = 0.0f;
         player->rotationRate = 600.0f;
         player->damping = 0;
@@ -183,9 +183,9 @@ void SpaceGame::SpawnEnemies(int count)
             break;
         }
 
-        std::shared_ptr<viper::Model> enemyModel = std::make_shared<viper::Model>(GameData::enemyPoints, viper::vec3{ 0 , 1 , 1 });
+        //std::shared_ptr<viper::Model> enemyModel = std::make_shared<viper::Model>(GameData::enemyPoints, viper::vec3{ 0 , 1 , 1 });
         viper::Transform transform{ spawnPos, 0, 10 };
-        std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform, enemyModel);
+        std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform, viper::Resources().Get<viper::Texture>("textures/playership.png", viper::GetEngine().GetRenderer()));
         enemy->damping = 0.2f;
 
         float enemySpeed = viper::random::getReal(250.0f, 500.0f);

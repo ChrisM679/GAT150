@@ -2,32 +2,38 @@
 #include "Core/Stringhelper.h"
 #include "Resource.h"
 #include "Core/Logger.h"
+#include "Core/Singleton.h"
 #include <memory>
 #include <map>
 #include <iostream>
 
 namespace viper {
-	class ResourceManager {
+	class ResourceManager : public Singleton<ResourceManager> {
 	public:
-		template<typename T, typename ... TArgs>
-		res_t<T> Get(const std::string& name, TArgs&& ... args);
+		template<typename T, typename ... Args>
+		res_t<T> Get(const std::string& name, Args&& ... args);
 
-		static  ResourceManager& Instance() {
-			static ResourceManager instance;
-			return instance;
-		}
+		template<typename T, typename ... Args>
+		res_t<T> GetWithID(const std::string& id, const std::string& name, Args&& ... args);
 
 	private:
+		friend class Singleton<ResourceManager>; 
 		ResourceManager() = default;
 
 	private:
 		std::map<std::string, res_t<Resource>> m_resources;
 	};
 
-	template<typename T, typename ... TArgs>
-	inline res_t<T> ResourceManager::Get(const std::string& name, TArgs&& ... args)
+	template<typename T, typename ... Args>
+	inline res_t<T> ResourceManager::Get(const std::string& name, Args&& ... args)
 	{
-		std::string key = tolower(name);
+		return GetWithID<T>(name, name, std::forward<Args>(args)...);
+	}
+
+	template<typename T, typename ...Args>
+	inline res_t<T> ResourceManager::GetWithID(const std::string& id, const std::string& name, Args && ...args)
+	{
+		std::string key = tolower(id);
 
 		auto iter = m_resources.find(key);
 		if (iter != m_resources.end()) {
@@ -40,14 +46,17 @@ namespace viper {
 
 			return resource;
 		}
+
 		res_t<T> resource = std::make_shared<T>();
-		if (resource->Load(key, std::forward<TArgs>(args)...) == false) {
+		if (resource->Load(name, std::forward<Args>(args)...) == false) {
 			Logger::Error("SDL_Init Error: {}", SDL_GetError());
 			return res_t<T>();
 		}
-		
+
 		m_resources[key] = resource;
 
 		return resource;
 	}
+
+	inline ResourceManager& Resources() { return ResourceManager::Instance(); }
 }

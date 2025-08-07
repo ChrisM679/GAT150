@@ -21,7 +21,9 @@ namespace viper {
 
 		void DrawLine(float x1, float y1, float x2, float y2);
 		void DrawPoint(float x, float y);
+
 		void DrawTexture(class Texture* texture, float x, float y);
+		void DrawTexture(class Texture* texture, float x, float y, float angle, float scale = 1);
 
 		int GetWidth() const { return m_width; }
 		int GetHeight() const { return m_height; }

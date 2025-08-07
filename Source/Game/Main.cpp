@@ -41,10 +41,11 @@ int main(int argc, char* argv[]) {
         stars.push_back(viper::vec2{ viper::random::getReal() * 1280, viper::random::getReal() * 1024 });
     }
 
-    auto texture = viper::ResourceManager::Instance().Get<viper::Texture>("kohler.jpg", viper::GetEngine().GetRenderer());
+    auto texture = viper::Resources().Get<viper::Texture>("textures/playership.png", viper::GetEngine().GetRenderer());
 
     SDL_Event e;
     bool quit = false;
+    float rotate = 0;
    
     while (!quit) {
         while (SDL_PollEvent(&e)) {
@@ -71,8 +72,8 @@ int main(int argc, char* argv[]) {
         viper::vec2 speed{ -140.0f, 0.0f };
         float length = speed.Length();
 
-        viper::GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30);
-
+		rotate += viper::GetEngine().GetTime().GetDeltaTime() * 0.5f;
+        viper::GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30, rotate, 0.5f);
 
         for (auto& star : stars) {
             star += speed * viper::GetEngine().GetTime().GetDeltaTime();
