@@ -2,6 +2,8 @@
 #include <string>
 #include <iostream>
 #include <format>
+#include <cstdint>
+#include <SDL3/SDL.h>
 
 namespace viper {
 
@@ -29,7 +31,6 @@ namespace viper {
 		}
 
 		static void Log(LogLevel level, const std::string& message) {
-
 			if ((s_enabledLevels & level) == LogLevel::None) return;
 
 			std::string prefix;
@@ -59,9 +60,9 @@ namespace viper {
 			}
 
 			const std::string reset = "\033[0m";
-			std::string output = color + prefix + message + reset + "\n";
+			std::string output = color + prefix + message + reset;
 
-			std::cerr << output;
+			Logger::Error("SDL_Init Error: {}", SDL_GetError());
 		}
 
 		template<typename... Args>
@@ -76,15 +77,16 @@ namespace viper {
 
 		template<typename... Args>
 		static void Warning(std::format_string<Args...> fmt, Args&&... args) {
-			<call Log() with warning level and std::format with args>
+			Log(LogLevel::Warning, std::format(fmt, std::forward<Args>(args)...));
 		}
 
 		template<typename... Args>
 		static void Debug(std::format_string<Args...> fmt, Args&&... args) {
-			<call Log() with debug level and std::format with args>
+			Log(LogLevel::Debug, std::format(fmt, std::forward<Args>(args)...));
 		}
 
 	private:
 		inline static LogLevel s_enabledLevels = LogLevel::All;
 	};
+
 }

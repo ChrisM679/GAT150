@@ -1,5 +1,6 @@
 #include "Font.h"
 #include <SDL3_ttf/SDL_ttf.h>
+#include "Core/Logger.h"
 #include <iostream>
 
 namespace viper {
@@ -22,7 +23,7 @@ namespace viper {
 	bool Font::Load(const std::string& name, float fontSize) {
 		m_ttfFont = TTF_OpenFont(name.c_str(), fontSize);
 		if (m_ttfFont == nullptr) {
-			std::cerr << "Could not load font: " << name << std::endl;
+			Logger::Error("SDL_Init Error: {}", SDL_GetError());
 			return false;
 		}
 

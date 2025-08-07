@@ -1,5 +1,6 @@
 #include "Texture.h"
 #include "Renderer.h"
+#include "Core/Logger.h"
 #include <SDL3_image/SDL_image.h>
 #include <iostream>
 
@@ -17,7 +18,7 @@ namespace viper {
         SDL_Surface* surface = IMG_Load(filename.c_str());
         if (!surface)
         {
-            std::cerr << "Could not load image: " << filename << std::endl;
+            Logger::Error("SDL_Init Error: {}", SDL_GetError());
             return false;
         }
 
@@ -28,7 +29,7 @@ namespace viper {
         SDL_DestroySurface(surface);
         if (!m_texture)
         {
-            std::cerr << "Could not create texture: " << filename << std::endl;
+            Logger::Error("SDL_Init Error: {}", SDL_GetError());
             return false;
         }
 

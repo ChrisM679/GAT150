@@ -1,10 +1,10 @@
 #include "AudioSystem.h"
+#include "Core/StringHelper.h"
+#include "Core/Logger.h"
 
-#include "../Core/StringHelper.h"
-
-#include<fmod_errors.h>
-
+#include <SDL3/SDL_error.h>
 #include <iostream>
+
 
 namespace viper {
 
@@ -15,7 +15,7 @@ namespace viper {
     /// <returns>true if the FMOD operation was successful (FMOD_OK); false otherwise.</returns>
     bool AudioSystem::CheckFMODResult(FMOD_RESULT result) {
         if (result != FMOD_OK) {
-            std::cerr << "FMOD Error: " << FMOD_ErrorString(result) << std::endl;
+            Logger::Error("SDL_Init Error: {}", SDL_GetError());
             return false;
         }
         return true;
@@ -53,7 +53,7 @@ namespace viper {
         std::string key = name.empty() ? filename : name;
         key = tolower(key);
         if (m_sounds.find(key) != m_sounds.end()) {
-            std::cerr << "Sound with name '" << key << "' already exists." << std::endl;
+            Logger::Error("SDL_Init Error: {}", SDL_GetError());
             return false;
         }
         FMOD::Sound* sound = nullptr;
@@ -66,7 +66,7 @@ namespace viper {
     {
         std::string key = name;
         if (m_sounds.find(key) == m_sounds.end()) {
-            std::cerr << "Sound with name '" << key << "' does not exist." << std::endl;
+            Logger::Error("SDL_Init Error: {}", SDL_GetError());
             return false;
         }
         FMOD_RESULT result = m_system->playSound(m_sounds[name], 0, false, nullptr);

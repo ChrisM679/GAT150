@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/Stringhelper.h"
 #include "Resource.h"
+#include "Core/Logger.h"
 #include <memory>
 #include <map>
 #include <iostream>
@@ -33,7 +34,7 @@ namespace viper {
 			auto base = iter->second;
 			auto resource = std::dynamic_pointer_cast<T>(base);
 			if (resource == nullptr) {
-				std::cerr << "ResourceManager::Get: Could not cast resource to desired type: " << key << std::endl;
+				Logger::Error("SDL_Init Error: {}", SDL_GetError());
 				return res_t<T>();
 			}
 
@@ -41,7 +42,7 @@ namespace viper {
 		}
 		res_t<T> resource = std::make_shared<T>();
 		if (resource->Load(key, std::forward<TArgs>(args)...) == false) {
-			std::cerr << "ResourceManager::Get: Could not load resource: " << key << std::endl;
+			Logger::Error("SDL_Init Error: {}", SDL_GetError());
 			return res_t<T>();
 		}
 		
