@@ -51,11 +51,11 @@ void SpaceGame::Update(float dt)
 
         // create player
         //std::shared_ptr<viper::Model> model = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 0.0f, 0.4f, 1.0f });
-        viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f, viper::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 5 };
+        viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f, viper::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 0.5f };
         auto player = std::make_unique<Player>(transform, viper::Resources().Get<viper::Texture>("textures/playership.png", viper::GetEngine().GetRenderer()));
-        player->speed = 0.0f;
+        player->speed = 1000.0f;
         player->rotationRate = 600.0f;
-        player->damping = 0;
+        player->damping = 1.5f;
         player->name = "player";
         player->tag = "player";
 
@@ -152,39 +152,53 @@ void SpaceGame::SpawnEnemies(int count)
 {
     Player* player = m_scene->GetactorByName<Player>("player");
     viper::vec2 playerPos = {};
+    float playerRadius = 0.0f;
+
     if (player) {
         playerPos = player->m_transform.position;
+        playerRadius = player->GetRadius();
     }
 
     float screenW = (float)viper::GetEngine().GetRenderer().GetWidth();
     float screenH = (float)viper::GetEngine().GetRenderer().GetHeight();
 
     for (int i = 0; i < count; ++i) {
-        int edge = static_cast<int>(viper::random::getReal(0.0f, 4.0f));
         viper::vec2 spawnPos;
+        bool validSpawn = false;
 
-        switch (edge) {
-        case 0: 
-            spawnPos.x = viper::random::getReal() * screenW;
-            spawnPos.y = 0.0f;
-            break;
-        case 1:
-            spawnPos.x = viper::random::getReal() * screenW;
-            spawnPos.y = screenH;
-            break;
-        case 2: 
-            spawnPos.x = 0.0f;
-            spawnPos.y = viper::random::getReal() * screenH;
-            break;
-        case 3:
-        default:
-            spawnPos.x = screenW;
-            spawnPos.y = viper::random::getReal() * screenH;
-            break;
-        }
+        do {
+            int edge = static_cast<int>(viper::random::getReal(0.0f, 4.0f));
+            switch (edge) {
+            case 0: 
+                spawnPos.x = viper::random::getReal() * screenW;
+                spawnPos.y = 0.0f;
+                break;
+            case 1:
+                spawnPos.x = viper::random::getReal() * screenW;
+                spawnPos.y = screenH;
+                break;
+            case 2: 
+                spawnPos.x = 0.0f;
+                spawnPos.y = viper::random::getReal() * screenH;
+                break;
+            case 3:
+            default:
+                spawnPos.x = screenW;
+                spawnPos.y = viper::random::getReal() * screenH;
+                break;
+            }
 
-        //std::shared_ptr<viper::Model> enemyModel = std::make_shared<viper::Model>(GameData::enemyPoints, viper::vec3{ 0 , 1 , 1 });
-        viper::Transform transform{ spawnPos, 0, 10 };
+            if (player) {
+                viper::vec2 direction = playerPos - spawnPos;
+                if (direction.LengthSqr() > (playerRadius * playerRadius * 4.0f)) {
+                    validSpawn = true;
+                }
+            } else {
+                validSpawn = true;\
+            }
+        } while (!validSpawn);
+
+        viper::Transform transform{ spawnPos, 0, 0.5f };
         std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform, viper::Resources().Get<viper::Texture>("textures/playership.png", viper::GetEngine().GetRenderer()));
         enemy->damping = 0.2f;
 
@@ -199,11 +213,9 @@ void SpaceGame::SpawnEnemies(int count)
             if (direction.LengthSqr() > 0.0f) {
                 direction = direction.Normalized();
                 enemy->m_transform.rotation = viper::math::radToDeg(direction.Angle());
-
                 enemy->velocity = direction * enemySpeed;
             }
-        }
-        else {
+        } else {
             enemy->velocity = viper::vec2{ 0, 0 };
         }
 

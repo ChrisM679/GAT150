@@ -34,7 +34,7 @@ void Enemy::Update(float dt)
 
 		//std::shared_ptr<viper::Model> model = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 0.0f, 1.0f, 1.0f });
 
-		viper::Transform m_transform{ this->m_transform.position, this->m_transform.rotation, 2.0f };
+		viper::Transform m_transform{ this->m_transform.position, this->m_transform.rotation, 0.5f };
 		auto rocket = std::make_unique<Rocket>(m_transform, viper::Resources().Get<viper::Texture>("textures/playership.png", viper::GetEngine().GetRenderer()));
 		rocket->speed = 500.0f;
 		rocket->lifespan = 1.5f;
