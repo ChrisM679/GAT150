@@ -232,7 +232,7 @@
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="Renderer\Font.h" />
-    <ClInclude Include="Renderer\Model.h" />
+    <ClInclude Include="Renderer\Mesh.h" />
     <ClInclude Include="Renderer\ParticleSystem.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Renderer\Text.h" />

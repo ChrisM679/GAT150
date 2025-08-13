@@ -51,6 +51,49 @@ namespace viper
 		float Length() const { return viper::math::sqrtf(LengthSqr()); }
 	};
 
+	template<typename T>
+	std::ostream& operator<<(std::ostream& os, const Vector3<T>& v)
+	{
+		os << "Vector3(" << v.x << ", " << v.y << ", " << v.z << ")";
+		return os;
+	}
+
+	template<typename T>
+	std::istream& operator>>(std::istream& os, Vector3<T>& v)
+	{
+		char ch = '\0';
+		// { x, y, z }
+		if (!(os >> std::ws << ch) || ch != '{') {
+			os.setstate(std::ios::failbit);
+			return os;
+		}
+		if (!(os >> std::ws >> v.x)) {
+			os.setstate(std::ios::failbit);
+			return os;
+		}
+		if (!(os >> std::ws >> ch) || ch != ',') {
+			os.setstate(std::ios::failbit);
+			return os;
+		}
+		if (!(os >> std::ws >> v.y)) {
+			os.setstate(std::ios::failbit);
+			return os;
+		}
+		if (!(os >> std::ws >> ch) || ch != ',') {
+			os.setstate(std::ios::failbit);
+			return os;
+		}
+		if (!(os >> std::ws >> v.z)) {
+			os.setstate(std::ios::failbit);
+			return os;
+		}
+		if (!(os >> std::ws << ch) || ch != '}') {
+			os.setstate(std::ios::failbit);
+			return os;
+		}
+		return os;
+	}
+
 	using ivec3 = Vector3<int>;
 	using vec3 = Vector3<float>;
 }

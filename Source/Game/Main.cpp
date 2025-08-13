@@ -3,8 +3,49 @@
 int main(int argc, char* argv[]) {
 
 	viper::file::SetCurrentDirectory("Assets");
+	viper::Logger::Info("current directory: {}", viper::file::GetCurrentDirectory());
+
+	// command line arguments
+    std::cout << argc << std::endl;
+    for (int i = 0; i < argc; i++) {
+		viper::Logger::Debug("arg[{}]: {}", i, argv[i]);
+	}
+    
+    // streams
+	/*std::cout << "Hello, Viper Engine!" << std::endl;
+    int age{ 0 };
+	std::cout << "Enter your age: ";
+    if (std::cin >> age) {
+		std::cout << "INVALID INPUT" << std::endl;
+    }
+	std::cout << "You are : " << (age * 365) << "days old" << std::endl;*/
+
+    //file
+	std::fstream stream("test.txt");
+    if (!stream) {
+        std::cout << "Failed to open file" << std::endl;
+    }
+	//std::cout << stream.rdbuf();
+	std::string line;
+    while (std::getline(stream, line)) {
+        std::cout << line << std::endl;
+    }
+
+    //user data type
+	viper::vec3 v{ 10.0f, 20.0f, 54 };
+	std::cout << v << std::endl;
+
+	std::string vstr("{ 10.0f, 20.0f, 54 }");
+	std::stringstream sstream(vstr);
+
+	viper::vec2 v2;
+	sstream >> v2;
+	std::cout << v2 << std::endl;
+
+    return 0;
 
 	// Intialize engine
+	viper::Logger::Warning("Viper Engine is initializing...");
     viper::GetEngine().Initialize();
 
 	//Initialize game
@@ -49,7 +90,6 @@ int main(int argc, char* argv[]) {
         float length = speed.Length();
 
 		rotate += viper::GetEngine().GetTime().GetDeltaTime() * 0.5f;
-        viper::GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30, rotate, 0.5f);
 
         for (auto& star : stars) {
             star += speed * viper::GetEngine().GetTime().GetDeltaTime();

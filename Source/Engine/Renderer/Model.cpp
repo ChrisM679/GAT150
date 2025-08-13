@@ -1,13 +1,30 @@
-#include "Model.h"
+#include "Mesh.h"
 #include "Renderer.h"
 
 namespace viper
 {
+	bool Mesh::Load(const std::string& filename) {
+		std::string buffer;
+		if (!file::ReadTextFile(filename, buffer)) {
+			Logger::Error("Failed to load mesh file: {}", filename);
+		}
+
+		std::stringstream stream(buffer);
+
+		stream >> m_color;
+
+		vec2 point;
+		while (stream >> point) {
+			m_points.push_back(point);
+		}
+
+		return false;
+	}
 	/// <summary>
 	/// Draws the model by rendering lines between its points using the specified renderer.
 	/// </summary>
 	/// <param name="renderer">The Renderer object used to draw the model.</param>
-	void Model::Draw(Renderer& renderer, const vec2& postion, float rotation, float scale)
+	void Mesh::Draw(Renderer& renderer, const vec2& postion, float rotation, float scale)
 	{
 		if (m_points.empty()) return;
 
@@ -26,7 +43,7 @@ namespace viper
 	/// </summary>
 	/// <param name="renderer">The Renderer object used to draw the model.</param>
 	/// <param name="transform">The Transform object specifying position, rotation, and scale to apply to the model's points.</param>
-	void Model::Draw(Renderer& renderer, const Transform& transform)
+	void Mesh::Draw(Renderer& renderer, const Transform& transform)
 	{
 		if (m_points.empty()) return;
 
@@ -39,7 +56,7 @@ namespace viper
 			renderer.DrawLine(p1.x, p1.y, p2.x, p2.y);
 		}
 	}
-	void Model::CalculateRadius()
+	void Mesh::CalculateRadius()
 	{
 		m_radius = 0.0f;
 		for (const auto& point : m_points) {
