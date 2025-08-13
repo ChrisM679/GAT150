@@ -1,17 +1,7 @@
 #include "Player.h"
-#include "Engine.h"
 #include "SpaceGame.h"
 #include "../Rocket.h"
-#include "Framework/Actor.h"
-#include "Framework/Scene.h"
-#include "Math/Vector3.h"
-#include "Core/Random.h"
 #include "../GameData.h"
-#include "Renderer/Renderer.h"
-#include "Renderer/ParticleSystem.h"
-#include "Renderer/Model.h"
-#include "Input/InputSystem.h"
-#include "Audio/AudioSystem.h"
 
 void Player::Update(float dt)
 {
@@ -36,7 +26,10 @@ void Player::Update(float dt)
 
     viper::vec2 direction{ 1, 0 };
 	viper::vec2 force = direction.Rotate(viper::math::degToRad(m_transform.rotation)) * thrust * speed;
-    velocity += force;
+    auto* rb = GetComponent<viper::RigidBody>();
+    if (rb) {
+        rb->velocity += force * dt;
+    }
 
 	m_transform.position.x = viper::math::wrap(m_transform.position.x, 0.0f, (float)viper::GetEngine().GetRenderer().GetWidth());
     m_transform.position.y = viper::math::wrap(m_transform.position.y, 0.0f, (float)viper::GetEngine().GetRenderer().GetHeight());
@@ -45,14 +38,26 @@ void Player::Update(float dt)
     if (viper::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE) && fireTimer <=0 ) {
 		fireTimer = fireTime;
 
-        std::shared_ptr<viper::Model> model = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 1.0f, 1.0f, 1.0f });
-
+		viper::GetEngine().GetAudio().PlaySound(*viper::Resources().Get<viper::AudioClip>("bass.wav", viper::GetEngine().GetAudio()).get());
+        
         viper::Transform m_transform{ this->m_transform.position, this->m_transform.rotation, 0.5f };
-        auto rocket = std::make_unique<Rocket>(m_transform, viper::Resources().Get<viper::Texture>("textures/playership.png", viper::GetEngine().GetRenderer()));
+        auto rocket = std::make_unique<Rocket>(m_transform);
         rocket->speed = 1500.0f;
 		rocket->lifespan = 1.0f;
         rocket->name = "rocket";
         rocket->tag = "player";
+
+        //components
+        auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
+        spriteRenderer->textureName = "textures/playership.png";
+        rocket->AddComponent(std::move(spriteRenderer));
+
+        auto rb = std::make_unique<viper::RigidBody>();
+        rocket->AddComponent(std::move(rb));
+
+        auto collider = std::make_unique<viper::CircleCollider2D>();
+        collider->radius = 10.0f;
+        rocket->AddComponent(std::move(collider));
 
         m_scene->AddActor(std::move(rocket));
     }

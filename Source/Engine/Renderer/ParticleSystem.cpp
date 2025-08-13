@@ -1,6 +1,5 @@
 #include "ParticleSystem.h"
 #include "Renderer.h"
-#include "../Core/Random.h"
 
 namespace viper {
 	bool ParticleSystem::Initialize(int poolSize) {

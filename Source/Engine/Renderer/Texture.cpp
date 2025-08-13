@@ -1,8 +1,5 @@
 #include "Texture.h"
 #include "Renderer.h"
-#include "Core/Logger.h"
-#include <SDL3_image/SDL_image.h>
-#include <iostream>
 
 namespace viper {
     Texture::~Texture()

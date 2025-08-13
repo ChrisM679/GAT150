@@ -1,6 +1,4 @@
 #include "Text.h"
-#include <SDL3_ttf/SDL_ttf.h>
-#include "Core/Logger.h"
 
 namespace viper {
 

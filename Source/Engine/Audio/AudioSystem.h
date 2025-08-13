@@ -15,11 +15,14 @@ namespace viper {
 
 			bool AddSound(const char* filename, const std::string& name = "");
 			bool PlaySound(const std::string& name);
+			bool PlaySound(class AudioClip& audioClip);
 
 		private:
-			bool CheckFMODResult(FMOD_RESULT result);
+			static bool CheckFMODResult(FMOD_RESULT result);
 
 		private:
+			friend class AudioClip;
+
 			FMOD::System* m_system = nullptr;
 			std::map<std::string, FMOD::Sound*> m_sounds; 
 		};

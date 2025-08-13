@@ -1,21 +1,16 @@
-#pragma once
+class Enemy : public viper::Actor {  
+public:  
+    float speed = 200.0f;  
+    float fireTimer = 0.0f;  
+    float fireTime = 0.0f;
 
-#include "Framework/Actor.h"
+public:  
+    Enemy() = default;  
+    Enemy(const viper::Transform transform) :  
+        Actor{ transform }  
+    {}  
 
-class Enemy : public viper::Actor {
-public:
-	float speed = 200.0f;
-	float fireTimer = 0.0f;
-	float fireTime = 0.0f;
+    void Update(float dt) override;  
 
-public:
-	Enemy() = default;
-	Enemy(const viper::Transform transform, viper::res_t<viper::Texture> texture) :
-		Actor{ transform, texture }
-	{
-	}
-
-	void Update(float dt) override;
-
-	void OnCollision(Actor* other) override;
+    void OnCollision(Actor* other) override;  
 };

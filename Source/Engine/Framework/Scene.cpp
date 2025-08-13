@@ -1,7 +1,6 @@
 #include "Scene.h"
-#include "Actor.h"
-#include "Core/StringHelper.h"
 #include "Renderer/Renderer.h"
+#include "Components/ColliderComponent.h"
 
 namespace viper
 {
@@ -11,7 +10,9 @@ namespace viper
 	/// <param name="dt">The time elapsed since the last update, in seconds.</param>
 	void Scene::Update(float dt) {
 		for (auto& actor : m_actors) {
-			actor->Update(dt);
+			if (actor->active) {
+				actor->Update(dt);
+			}
 		}
 
 		for (auto iter = m_actors.begin(); iter != m_actors.end();) {
@@ -27,11 +28,16 @@ namespace viper
 			for (auto& actorB : m_actors) {
 				if (actorA == actorB || (actorA->destroyed || actorB->destroyed)) continue;
 
-				float distance = (actorA->m_transform.position - actorB->m_transform.position).Length();
-				if (distance < (actorA->GetRadius() + actorB->GetRadius())) {
+				auto colliderA = actorA->GetComponent<ColliderComponent>();
+				auto colliderB = actorB->GetComponent<ColliderComponent>();
+
+				if (!colliderA || !colliderB) continue;
+
+				if (colliderA->CheckCollision(*colliderB)) {
 					actorA->OnCollision(actorB.get());
 					actorB->OnCollision(actorA.get());
 				}
+
 			}
 		}
 	}
@@ -41,7 +47,9 @@ namespace viper
 	/// <param name="renderer">The renderer used to draw the actors.</param>
 	void Scene::Draw(Renderer& renderer) {
 		for (auto& actor : m_actors) {
-			actor->Draw(renderer);
+			if (actor->active) {
+				actor->Draw(renderer);
+			}
 		}
 	}
 

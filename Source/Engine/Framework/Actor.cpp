@@ -1,5 +1,6 @@
 #include "Actor.h"
 #include "Renderer/Renderer.h"
+#include "Components/RendererComponent.h"
 
 namespace viper
 {
@@ -7,28 +8,39 @@ namespace viper
 	{
 		if (destroyed) return;
 
-		if (lifespan != 0.0f) {
+		if (lifespan > 0) {
 			lifespan -= dt;
-			if (lifespan <= 0.0f) {
+			if (lifespan <= 0) {
 				destroyed = true;
 				return;
 			}
 		}
 
-		m_transform.position += velocity * dt;
-		velocity *= (1.0f / (1.0f + damping) * dt);
+		for (auto& component : m_components) {
+			if (component->active) {
+				component->Update(dt);
+			}
+		}
 	}
 
 	void Actor::Draw(Renderer& renderer)
 	{
 		if (destroyed) return;
 
-			renderer.DrawTexture(m_texture.get(), m_transform.position.x, m_transform.position.y, m_transform.rotation, m_transform.scale);
+		for (auto& component : m_components) {
+			if (component->active) {
+				auto rendererCompomet = dynamic_cast<RendererComponent*>(component.get());
+				if (rendererCompomet) {
+					rendererCompomet->Draw(renderer);
+				}
+			}
+		}
 	}
 
-	float Actor::GetRadius()
+	void Actor::AddComponent(std::unique_ptr<Component> component)
 	{
-		return (m_texture) ? (m_texture->GetSize().Length() * 0.5f) * m_transform.scale * 0.9f : 0.0f;
+		component->owner = this;
+		m_components.push_back(std::move(component));
 	}
 
 }

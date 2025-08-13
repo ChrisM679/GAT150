@@ -28,6 +28,9 @@
     <ClCompile Include="Rocket.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
+    <ClCompile Include="GamePCH.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Player.h">
@@ -43,6 +46,9 @@
       <Filter>Source\Game</Filter>
     </ClInclude>
     <ClInclude Include="Rocket.h">
+      <Filter>Source\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePCH.h">
       <Filter>Source\Game</Filter>
     </ClInclude>
   </ItemGroup>
