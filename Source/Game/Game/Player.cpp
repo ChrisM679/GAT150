@@ -1,3 +1,4 @@
+#include "../GamePCH.h"
 #include "Player.h"
 #include "SpaceGame.h"
 #include "../Rocket.h"
@@ -38,7 +39,10 @@ void Player::Update(float dt)
     if (viper::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE) && fireTimer <=0 ) {
 		fireTimer = fireTime;
 
-		viper::GetEngine().GetAudio().PlaySound(*viper::Resources().Get<viper::AudioClip>("bass.wav", viper::GetEngine().GetAudio()).get());
+		auto sound = viper::Resources().Get<viper::AudioClip>("bass.wav", viper::GetEngine().GetAudio()).get();
+        if (sound) {
+            viper::GetEngine().GetAudio().PlaySound(*sound);
+        }
         
         viper::Transform m_transform{ this->m_transform.position, this->m_transform.rotation, 0.5f };
         auto rocket = std::make_unique<Rocket>(m_transform);

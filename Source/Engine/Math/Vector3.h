@@ -63,7 +63,7 @@ namespace viper
 	{
 		char ch = '\0';
 		// { x, y, z }
-		if (!(os >> std::ws << ch) || ch != '{') {
+		if (!(os >> std::ws >> ch) || ch != '{') {
 			os.setstate(std::ios::failbit);
 			return os;
 		}
@@ -87,7 +87,7 @@ namespace viper
 			os.setstate(std::ios::failbit);
 			return os;
 		}
-		if (!(os >> std::ws << ch) || ch != '}') {
+		if (!(os >> std::ws >> ch) || ch != '}') {
 			os.setstate(std::ios::failbit);
 			return os;
 		}
