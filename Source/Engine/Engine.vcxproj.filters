@@ -202,5 +202,8 @@
     <ClInclude Include="Core\Json.h">
       <Filter>Source\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Factory.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

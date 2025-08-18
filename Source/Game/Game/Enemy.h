@@ -1,4 +1,7 @@
-class Enemy : public viper::Actor {  
+#pragma once
+#include "Framework/Component.h"
+
+class Enemy : public viper::Component {  
 public:  
     float speed = 200.0f;  
     float fireTimer = 0.0f;  
@@ -6,11 +9,11 @@ public:
 
 public:  
     Enemy() = default;  
-    Enemy(const viper::Transform transform) :  
-        Actor{ transform }  
-    {}  
+    //Enemy(const viper::Transform transform) :  
+    //   Actor{ transform }  
+    //{}  
 
     void Update(float dt) override;  
 
-    void OnCollision(Actor* other) override;  
+    void OnCollision(class Actor* other);  
 };

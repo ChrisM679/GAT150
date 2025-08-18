@@ -2,7 +2,7 @@
 #include "Renderer/Renderer.h"
 
 namespace viper {
-
+	FACTORY_REGISTER(SpriteRenderer)
 	void SpriteRenderer::Update(float dt) {\
 		//
 	}

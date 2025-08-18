@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 namespace viper {
 	class Object {
