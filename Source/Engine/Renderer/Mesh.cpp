@@ -7,6 +7,7 @@ namespace viper
 		std::string buffer;
 		if (!file::ReadTextFile(filename, buffer)) {
 			Logger::Error("Failed to load mesh file: {}", filename);
+			return false;
 		}
 
 		std::stringstream stream(buffer);
@@ -18,7 +19,12 @@ namespace viper
 			m_points.push_back(point);
 		}
 
-		return false;
+		if (stream.fail() && !stream.eof()) {
+			Logger::Error("Failed to parse mesh points from file: {}", filename);
+			return false;
+		}
+
+		return true;
 	}
 	/// <summary>
 	/// Draws the model by rendering lines between its points using the specified renderer.

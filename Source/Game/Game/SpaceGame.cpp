@@ -202,6 +202,10 @@ void SpaceGame::SpawnEnemies(int count)
         viper::Transform transform{ spawnPos, 0, 0.5f };
         std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform);
 
+		auto meshRenderer = std::make_unique<viper::MeshRenderer>();
+		meshRenderer->meshName = "meshes/enemy.txt";
+		enemy->AddComponent(std::move(meshRenderer));
+
         auto rb = std::make_unique<viper::RigidBody>();
         rb->damping = 0.5f;
         enemy->AddComponent(std::move(rb));
