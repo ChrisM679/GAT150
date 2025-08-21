@@ -1,0 +1,60 @@
+{
+  "actors": [
+    {
+      "name": "sprite",
+      "tag": "background",
+      "lifespan": 4,
+      "transform": {
+        "position": [
+          640,
+          512
+        ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "SpriteRenderer",
+          "texture_name": "textures/space-background.jpg"
+        }
+      ]
+    },
+    {
+      "name": "player",
+      "tag": "player",
+      "lifespan": 4,
+      "transform": {
+        "position": [
+          640,
+          512
+        ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "PLayer",
+          "speed": 1500.0,
+          "rotationRate": 600,
+          "fireTime": 0.2,"
+        },
+        {
+          "type": "SpriteRenderer",
+          "texture_name": "textures/playership.png"
+        },
+        {
+          "type": "RigidBody",
+          "damping": 1.5,
+          "velocity": [
+            0,
+            0
+          ]
+        },
+        {
+          "type": "CircleCollider2D",
+          "radius": 60
+        }
+      ]
+    }
+  ]
+}

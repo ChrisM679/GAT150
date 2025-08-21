@@ -59,9 +59,16 @@ namespace viper {
 		std::string key = tolower(name);
 		auto it = m_registry.find(key);
 		if (it != m_registry.end()) {
-			it->second->Create();
+			auto object = it ->second->Create();
+			T* derived = dynamic_cast<T*>(object.get());
+			if (derived) {
+				return std::unique_ptr<T>(derived);
+			}
+			Logger::Error("Factory: Created object of type '{}' but expected type '{}'", name, typeid(T).name());
 		}
-		Logger::Error("Factory: No creator registered for type '{}'", name);
+		else {
+			Logger::Error("Factory: No creator registered for type '{}'", name);
+		}
 
 		return nullptr;
 	}

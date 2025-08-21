@@ -1,55 +1,9 @@
 #include "Game/SpaceGame.h"
 
-class Animal {
-public:
-    virtual void Spreak() = 0;
-};
-
-class Cat : public Animal {
-    public:
-    void Spreak() override { std::cout << "Meow!\n"; }
-};
-
-class Dog : public Animal {
-public:
-    void Spreak() override { std::cout << "Woof!\n"; }
-};
-
-class Bird : public Animal {
-public:
-    void Spreak() override { std::cout << "Cherp!\n"; }
-};
-
-Animal* CreateAnimal(int id) {
-	Animal* animal = nullptr;
-    switch (id) {
-    case 1:
-        animal = new Cat;
-		break;
-    case 2:
-        animal = new Dog;
-        break;
-	case 3:
-        animal = new Bird;
-        break;
-    }
-	return animal;
-};
-
-
 int main(int argc, char* argv[]) {
 
 	viper::file::SetCurrentDirectory("Assets");
 	viper::Logger::Info("current directory: {}", viper::file::GetCurrentDirectory());
-
-	//viper::Factory::Instance().Register<viper::SpriteRenderer>("SpriteRenderer");
-    //viper::Factory::Instance().Register<viper::MeshRenderer>("MeshRenderer");
-
-	auto spriteRenderer = viper::Factory::Instance().Create("SpriteRenderer");
-    spriteRenderer->name = "Steve";
-
-
-    return 0;
 
 	// Intialize engine
 	viper::Logger::Warning("Viper Engine is initializing...");
@@ -58,12 +12,6 @@ int main(int argc, char* argv[]) {
 	//Initialize game
 	std::unique_ptr<SpaceGame> game = std::make_unique<SpaceGame>();
 	game->Initialize();
-
-    // Create stars
-    std::vector<viper::vec2> stars;
-    for (int i = 0; i < 100; i++) {
-        stars.push_back(viper::vec2{ viper::random::getReal() * 1280, viper::random::getReal() * 1024 });
-    }
 
     auto texture = viper::Resources().Get<viper::Texture>("textures/playership.png", viper::GetEngine().GetRenderer());
 
@@ -91,22 +39,6 @@ int main(int argc, char* argv[]) {
         viper::GetEngine().GetRenderer().Clear();
 
 		game->Draw(viper::GetEngine().GetRenderer());
-
-		// Draw stars
-        viper::vec2 speed{ -140.0f, 0.0f };
-        float length = speed.Length();
-
-		rotate += viper::GetEngine().GetTime().GetDeltaTime() * 0.5f;
-
-        for (auto& star : stars) {
-            star += speed * viper::GetEngine().GetTime().GetDeltaTime();
-
-            if (star[0] > 1280) star[0] = 0;
-            if (star[0] < 0) star[0] = 1280;
-
-            viper::GetEngine().GetRenderer().SetColor((uint8_t)viper::random::getInt(256), viper::random::getInt(256), viper::random::getInt(256));
-            viper::GetEngine().GetRenderer().DrawPoint(star.x, star.y);
-        }
        
         viper::GetEngine().GetRenderer().Present();
     }

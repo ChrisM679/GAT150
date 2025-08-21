@@ -65,4 +65,15 @@ namespace viper
 	{
 		m_actors.clear();
 	}
+	void Scene::Read(const json::value_t& value) {
+		//Read Actor
+		if (JSON_HAS(value, m_actors)) {
+			for (auto& actorValue : JSON_GET(value, m_actors).GetArray()) {
+				auto actor = Factory::Instance().Create<Actor>("Actor");
+				actor->Read(actorValue);
+
+				AddActor(std::move(actor));
+			}
+		}
+	}
 }

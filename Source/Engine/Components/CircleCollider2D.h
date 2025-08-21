@@ -7,8 +7,8 @@ namespace viper {
 		float radius{ 0.0f };
 
 		void Update(float dt) override;
-
 		bool CheckCollision(ColliderComponent& other) override;
 
+		void Read(const json::value_t& value) override;
 	};
 }

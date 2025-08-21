@@ -104,6 +104,12 @@
     <ClCompile Include="Components\AudioSource.cpp">
       <Filter>Source\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Math\Transform.cpp">
+      <Filter>Source\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Object.cpp">
+      <Filter>Source\Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Random.h">
@@ -216,6 +222,9 @@
     </ClInclude>
     <ClInclude Include="Components\AudioSource.h">
       <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Serializable.h">
+      <Filter>Source\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

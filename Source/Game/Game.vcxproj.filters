@@ -60,4 +60,9 @@
       <Filter>Assets</Filter>
     </Text>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Build\Assets\scene.json">
+      <Filter>Assets</Filter>
+    </None>
+  </ItemGroup>
 </Project>

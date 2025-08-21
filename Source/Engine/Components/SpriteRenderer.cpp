@@ -8,7 +8,7 @@ namespace viper {
 	}
 
 	void SpriteRenderer::Draw(Renderer& renderer) {
-		auto texture = Resources().Get<Texture>(textureName, renderer).get();
+		auto texture = Resources().Get<Texture>(textureName, renderer);
 			if (texture) {
 				renderer.DrawTexture(*texture,
 					owner->m_transform.position.x,
@@ -16,5 +16,9 @@ namespace viper {
 					owner->m_transform.rotation,
 					owner->m_transform.scale);
 			}
+	}
+	void SpriteRenderer::Read(const json::value_t& value) {
+		Object::Read(value);
+		JSON_READ_NAME(value, "texture_name", textureName);
 	}
 }

@@ -9,11 +9,7 @@ public:
 
 public:  
     Enemy() = default;  
-    //Enemy(const viper::Transform transform) :  
-    //   Actor{ transform }  
-    //{}  
 
-    void Update(float dt) override;  
-
-    void OnCollision(class Actor* other);  
+    void Update(float dt) override;
+    void OnCollision(class viper::Actor* other);  
 };
