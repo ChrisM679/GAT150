@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "../GameData.h"
+using namespace viper::Actor;
 
 bool SpaceGame::Initialize()
 {
@@ -43,6 +44,9 @@ void SpaceGame::Update(float dt)
     {
         m_scene->RemoveAllActors();
 
+		auto player = viper::Factory::Instance().Create<viper::Actor>("player");
+		m_scene->AddActor(std::move(player));
+
         m_gameState = GameState::Game;
     }
     break;
@@ -66,7 +70,7 @@ void SpaceGame::Update(float dt)
             m_enemySpawnTimer = currentSpawnInterval;
             if ((int)activeEnemies < m_maxActiveEnemies) {
                 int allowedToSpawn = std::min(enemiesThisWave, m_maxActiveEnemies - static_cast<int>(activeEnemies));
-                SpawnEnemies(allowedToSpawn);
+                SpawnEnemy(allowedToSpawn);
             }
         }
     }
@@ -126,105 +130,15 @@ void SpaceGame::OnPlayerDeath()
     m_stateTimer = 2.0f;
 }
 
-void SpaceGame::SpawnEnemies()
-{
-    SpawnEnemies(kBaseEnemiesPerWave);
-}
-
-void SpaceGame::SpawnEnemies(int count)
-{
-    /*
-    Player* player = m_scene->GetactorByName<Player>("player");
-    viper::vec2 playerPos = {};
-    float playerRadius = 0.0f;
-
+void SpaceGame::SpawnEnemy() {
+	viper::Actor* player = m_scene->GetActorByName<viper::Actor>("player");
     if (player) {
-        playerPos = player->m_transform.position;
-		playerRadius = player->GetComponent<viper::CircleCollider2D>()->radius;
-    }
+		viper::vec2 positon = player->m_transform.position + viper::random::onUnitCircle() * viper::random::getReal(200.0f, 500.0f);
+		viper::Transform transform{ positon, viper::random::getReal(0.0f, 360.0f), 1.0f};
 
-    float screenW = (float)viper::GetEngine().GetRenderer().GetWidth();
-    float screenH = (float)viper::GetEngine().GetRenderer().GetHeight();
-
-    for (int i = 0; i < count; ++i) {
-        viper::vec2 spawnPos;
-        bool validSpawn = false;
-
-        do {
-            int edge = static_cast<int>(viper::random::getReal(0.0f, 4.0f));
-            switch (edge) {
-            case 0: 
-                spawnPos.x = viper::random::getReal() * screenW;
-                spawnPos.y = 0.0f;
-                break;
-            case 1:
-                spawnPos.x = viper::random::getReal() * screenW;
-                spawnPos.y = screenH;
-                break;
-            case 2: 
-                spawnPos.x = 0.0f;
-                spawnPos.y = viper::random::getReal() * screenH;
-                break;
-            case 3:
-            default:
-                spawnPos.x = screenW;
-                spawnPos.y = viper::random::getReal() * screenH;
-                break;
-            }
-
-            if (player) {
-                viper::vec2 direction = playerPos - spawnPos;
-                if (direction.LengthSqr() > (playerRadius * playerRadius * 4.0f)) {
-                    validSpawn = true;
-                }
-            } else {
-                validSpawn = true;\
-            }
-        } while (!validSpawn);
-
-        viper::Transform transform{ spawnPos, 0, 0.5f };
-        std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform);
-
-		auto meshRenderer = std::make_unique<viper::MeshRenderer>();
-		meshRenderer->meshName = "meshes/enemy.txt";
-		enemy->AddComponent(std::move(meshRenderer));
-
-        auto rb = std::make_unique<viper::RigidBody>();
-        rb->damping = 0.5f;
-        enemy->AddComponent(std::move(rb));
-
-        auto collider = std::make_unique<viper::CircleCollider2D>();
-        collider->radius = 20.0f;
-        enemy->AddComponent(std::move(collider));
-
-        float enemySpeed = viper::random::getReal(250.0f, 500.0f);
-        enemy->speed = enemySpeed;
-
-        enemy->fireTime = 100.0f;
-        enemy->fireTimer = enemy->fireTime;
-
-        
-        if (player) {
-            viper::vec2 direction = playerPos - spawnPos;
-            if (direction.LengthSqr() > 0.0f) {
-                direction = direction.Normalized();
-                enemy->m_transform.rotation = viper::math::radToDeg(direction.Angle());
-                enemy->velocity = direction * enemySpeed;
-            }
-        } else {
-            enemy->velocity = viper::vec2{ 0, 0 };
-        }
-        
-
-        //components
-        auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
-        spriteRenderer->textureName = "textures/playership.png";
-        enemy->AddComponent(std::move(spriteRenderer));
-
-        enemy->tag = "enemy";
+        auto enemy = viper::Instantiate("enemy", transform);
         m_scene->AddActor(std::move(enemy));
     }
-    */
 }
 
 

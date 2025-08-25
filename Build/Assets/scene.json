@@ -1,24 +1,5 @@
 {
-  "actors": [
-    {
-      "name": "sprite",
-      "tag": "background",
-      "lifespan": 4,
-      "transform": {
-        "position": [
-          640,
-          512
-        ],
-        "rotation": 0,
-        "scale": 1
-      },
-      "components": [
-        {
-          "type": "SpriteRenderer",
-          "texture_name": "textures/space-background.jpg"
-        }
-      ]
-    },
+  "prototypes": [
     {
       "name": "player",
       "tag": "player",
@@ -33,10 +14,11 @@
       },
       "components": [
         {
-          "type": "PLayer",
+          "type": "Player",
           "speed": 1500.0,
           "rotationRate": 600,
-          "fireTime": 0.2,"
+          "fireTime": 0.2,
+          "
         },
         {
           "type": "SpriteRenderer",
@@ -53,6 +35,66 @@
         {
           "type": "CircleCollider2D",
           "radius": 60
+        }
+      ]
+    },
+    {
+      "name": "enemy",
+      "tag": "enemy",
+      "lifespan": 4,
+      "transform": {
+        "position": [
+          840,
+          612
+        ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "Enemy",
+          "speed": 1500.0,
+          "rotationRate": 600,
+          "fireTime": 0.2,
+          "
+        },
+        {
+          "type": "SpriteRenderer",
+          "texture_name": "textures/playership.png"
+        },
+        {
+          "type": "RigidBody",
+          "damping": 1.5,
+          "velocity": [
+            0,
+            0
+          ]
+        },
+        {
+          "type": "CircleCollider2D",
+          "radius": 60
+        }
+      ]
+    }
+  ],
+  "actors": [
+    {
+      "name": "sprite",
+      "tag": "background",
+      "persistent": true,
+      "lifespan": 4,
+      "transform": {
+        "position": [
+          640,
+          512
+        ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "SpriteRenderer",
+          "texture_name": "textures/space-background.jpg"
         }
       ]
     }

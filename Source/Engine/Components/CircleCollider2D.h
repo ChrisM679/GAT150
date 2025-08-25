@@ -6,6 +6,8 @@ namespace viper {
 	public:
 		float radius{ 0.0f };
 
+		CLASS_PROTOTYPE(CircleCollider2D)
+
 		void Update(float dt) override;
 		bool CheckCollision(ColliderComponent& other) override;
 

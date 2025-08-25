@@ -34,8 +34,8 @@ public:
 	static constexpr float kDifficultyRampSeconds = 30.0f;
 		
 private:
-	void SpawnEnemies();
-	void SpawnEnemies(int count);
+	void SpawnEnemy();
+	//void SpawnEnemies(int count);
 
 private:
 	GameState m_gameState = GameState::Initialize;

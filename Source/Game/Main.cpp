@@ -1,6 +1,7 @@
 #include "Game/SpaceGame.h"
 
 int main(int argc, char* argv[]) {
+    
 
 	viper::file::SetCurrentDirectory("Assets");
 	viper::Logger::Info("current directory: {}", viper::file::GetCurrentDirectory());
@@ -13,11 +14,8 @@ int main(int argc, char* argv[]) {
 	std::unique_ptr<SpaceGame> game = std::make_unique<SpaceGame>();
 	game->Initialize();
 
-    auto texture = viper::Resources().Get<viper::Texture>("textures/playership.png", viper::GetEngine().GetRenderer());
-
     SDL_Event e;
     bool quit = false;
-    float rotate = 0;
    
     while (!quit) {
         while (SDL_PollEvent(&e)) {
@@ -26,11 +24,11 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        if (viper::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) { quit = true; }
-
         // Update input system
 		viper::GetEngine().Update();
         game->Update(viper::GetEngine().GetTime().GetDeltaTime());
+
+        if (viper::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) { quit = true; }
 
 		// Clear the renderer
 		viper::vec3 color{ 0, 0, 0};
