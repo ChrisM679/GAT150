@@ -6,6 +6,11 @@
 
 FACTORY_REGISTER(Enemy)
 
+void Enemy::Start() {
+	m_rigidbody = owner->GetComponent<viper::RigidBody>();
+	fireTimer = fireTime;
+}
+
 void Enemy::Update(float dt)
 {
 	/*
@@ -20,8 +25,8 @@ void Enemy::Update(float dt)
 
 	viper::vec2 force = viper::vec2{ 1,0 }.Rotate(viper::math::degToRad(owner->m_transform.rotation)) * speed;
 	auto* rb = owner->GetComponent<viper::RigidBody>();
-	if (rb) {
-		rb->velocity += force * dt;
+	if (m_rigidBody) {
+		m_rigidBody->velocity += force * dt;
 	}
 
 	owner->m_transform.position.x = viper::math::wrap(owner->m_transform.position.x, 0.0f, (float)viper::GetEngine().GetRenderer().GetWidth());
@@ -66,4 +71,8 @@ void Enemy::OnCollision(viper::Actor* other)
 		viper::GetEngine().GetParticleSystem().EmitExplosion(owner->m_transform.position, 100, 10.0f, 200.0f, 2.0f);
 		viper::GetEngine().GetParticleSystem().EmitExplosion(owner->m_transform.position, 50, 10.0f, 150.0f, 1.0f);
 	}
+}
+
+void Enemy::Read(const viper::json::value_t& value) {
+
 }

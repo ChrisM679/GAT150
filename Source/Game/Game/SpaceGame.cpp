@@ -3,15 +3,11 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "../GameData.h"
-using namespace viper::Actor;
 
 bool SpaceGame::Initialize()
 {
     m_scene = std::make_unique<viper::Scene>(this);
-
-	viper::json::document_t document;
-	viper::json::Load("scene.json", document);
-    m_scene->Read(document);
+	m_scene->Load("scene.json");
 
 	m_titleText = std::make_unique<viper::Text>(viper::Resources().GetWithID<viper::Font>("title_font", "fonts/MetalLord.ttf", 128.0f));
 	m_scoreText = std::make_unique<viper::Text>(viper::Resources().GetWithID<viper::Font>("ui_font", "fonts/MetalLord.ttf", 48.0f));

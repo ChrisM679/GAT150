@@ -33,6 +33,12 @@
     <Filter Include="Source\Components">
       <UniqueIdentifier>{840c522a-a005-4a2a-b3ca-34fdc98f687b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Event">
+      <UniqueIdentifier>{7497bef7-5c85-4ac2-98c3-b91fdb517e9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Physics">
+      <UniqueIdentifier>{c023a5f8-8bfb-4531-a0f6-6894ba30866b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -110,6 +116,9 @@
     <ClCompile Include="Framework\Object.cpp">
       <Filter>Source\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Event\EventManager.cpp">
+      <Filter>Source\Event</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Random.h">
@@ -181,9 +190,6 @@
     <ClInclude Include="Core\Singleton.h">
       <Filter>Source\Core</Filter>
     </ClInclude>
-    <ClInclude Include="EngineMinimal.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="EnginePCH.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -225,6 +231,24 @@
     </ClInclude>
     <ClInclude Include="Core\Serializable.h">
       <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Collidable.h">
+      <Filter>Source\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Physics.h">
+      <Filter>Source\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\Event.h">
+      <Filter>Source\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\EventManager.h">
+      <Filter>Source\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\Observer.h">
+      <Filter>Source\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineMinimal.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

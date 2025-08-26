@@ -5,7 +5,7 @@
 #define CLASS_PROTOTYPE(classname) virtual std::unique_ptr<Object> Clone() { return std::make_unique<classname>(*this); }
 
 namespace viper {
-	class Object : public Serializable {
+	class Object : public ISerializable {
 	public:
 		std::string name;
 		bool active{ true };

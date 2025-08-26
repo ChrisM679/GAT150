@@ -22,9 +22,18 @@
 #include "Math/Vector2.h"
 #include "Math/Vector3.h"
 
+//physics
+#include "Physics/Collidable.h"
+#include "Physics/Physics.h"
+
 //resources
 #include "Resources/Resource.h"
 #include "Resources/ResourceManager.h"
+
+//event manager
+#include "Event/Event.h"
+#include "Event/EventManager.h"
+#include "Event/Observer.h"
 
 //third-party libraries
 #include <fmod.hpp>

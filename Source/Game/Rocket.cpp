@@ -24,3 +24,7 @@ void Rocket::OnCollision(viper::Actor* other)
 		owner->destroyed = true;
 	}
 }
+
+void Rocket::Read(const viper::json::value_t& value) {
+
+}

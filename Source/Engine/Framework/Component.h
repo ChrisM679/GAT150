@@ -9,6 +9,8 @@ namespace viper {
 	public:
 		Component() = default;
 
+		virtual void Start() {}
+		virtual void Destroyed() {}
 		virtual void Update(float dt) = 0;
 	};
 }

@@ -6,6 +6,10 @@
 
 FACTORY_REGISTER(Player)
 
+void Player::Start() {
+	m_rigidbody = owner->GetComponent<viper::RigidBody>();
+}
+
 void Player::Update(float dt)
 {
     
