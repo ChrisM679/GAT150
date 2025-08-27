@@ -80,6 +80,8 @@ void Player::Update(float dt)
 
 void Player::OnCollision(viper::Actor* other)
 {
+	EVENT_NOTIFY(player_dead);
+
     if (owner->tag == "enemy") {
         viper::GetEngine().GetParticleSystem().EmitExplosion(owner->m_transform.position, 150, 10.0f, 250.0f, 2.0f);
         viper::GetEngine().GetParticleSystem().EmitExplosion(owner->m_transform.position, 100, 10.0f, 200.0f, 2.0f);

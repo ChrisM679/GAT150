@@ -119,6 +119,12 @@
     <ClCompile Include="Event\EventManager.cpp">
       <Filter>Source\Event</Filter>
     </ClCompile>
+    <ClCompile Include="Event\Observer.cpp">
+      <Filter>Source\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Physics.cpp">
+      <Filter>Source\Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Random.h">

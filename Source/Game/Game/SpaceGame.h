@@ -3,7 +3,7 @@
 #include "Renderer/Font.h"
 #include "Renderer/Text.h"
 
-class SpaceGame : public viper::Game {
+class SpaceGame : public viper::Game, public viper::IObserver {
 public:
 	enum class GameState {
 		Initialize,
@@ -23,6 +23,7 @@ public:
 
 	void Update(float dt) override;
 	void Draw(class viper::Renderer& renderer) override;
+	void OnNotify(const viper::Event& event) override;
 
 	void OnPlayerDeath();
 

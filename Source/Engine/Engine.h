@@ -6,6 +6,7 @@
 #include "Input/InputSystem.h"
 #include "Audio/AudioSystem.h"
 #include "Resources/ResourceManager.h"
+#include "Physics/Physics.h"
 #include <memory>
 
 namespace viper {
@@ -18,6 +19,7 @@ namespace viper {
 		void Update();
 		void Draw();
 
+		Physics& GetPhysics() { return *m_physics; }
 		Renderer& GetRenderer() { return *m_renderer; }
 		InputSystem& GetInput() { return *m_input; }
 		AudioSystem& GetAudio() { return *m_audio; }
@@ -32,6 +34,7 @@ namespace viper {
 	private:
 		Time m_time;
 
+		std::unique_ptr<Physics> m_physics;
 		std::unique_ptr<Renderer> m_renderer;
 		std::unique_ptr<InputSystem> m_input;
 		std::unique_ptr<AudioSystem> m_audio;

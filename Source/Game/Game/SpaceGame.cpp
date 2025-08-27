@@ -2,10 +2,12 @@
 #include "SpaceGame.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "../GameData.h"
 
 bool SpaceGame::Initialize()
 {
+	OBSERVER_ADD(player_dead);
+	OBSERVER_ADD(add_points);
+
     m_scene = std::make_unique<viper::Scene>(this);
 	m_scene->Load("scene.json");
 
@@ -14,6 +16,10 @@ bool SpaceGame::Initialize()
 	m_livesText = std::make_unique<viper::Text>(viper::Resources().GetWithID<viper::Font>("ui_font", "fonts/MetalLord.ttf", 48.0f));
 
     return true;
+}
+
+void SpaceGame::Shutdown() {
+    //
 }
 
 void SpaceGame::Update(float dt)
@@ -60,15 +66,6 @@ void SpaceGame::Update(float dt)
         int enemiesThisWave = kBaseEnemiesPerWave + extraEnemies;
 
         auto activeEnemies = m_scene->GetActorsByTag<Enemy>("enemy").size();
-
-        m_enemySpawnTimer -= dt;
-        if (m_enemySpawnTimer <= 0.0f) {
-            m_enemySpawnTimer = currentSpawnInterval;
-            if ((int)activeEnemies < m_maxActiveEnemies) {
-                int allowedToSpawn = std::min(enemiesThisWave, m_maxActiveEnemies - static_cast<int>(activeEnemies));
-                SpawnEnemy(allowedToSpawn);
-            }
-        }
     }
         break;
     case SpaceGame::GameState::PlayerDead:
@@ -120,6 +117,15 @@ void SpaceGame::Draw(viper::Renderer& renderer)
 	viper::GetEngine().GetParticleSystem().Draw(renderer);
 }
 
+void SpaceGame::OnNotify(const viper::Event& event) {
+    if (viper::equalsIgnoreCase(event.id, "player_dead")) {
+        OnPlayerDeath();
+    }
+    else if (viper::equalsIgnoreCase(event.id, "add_points")) {
+        AddPoints(std::get<int>(event.data));
+	}
+}
+
 void SpaceGame::OnPlayerDeath()
 {
     m_gameState = GameState::PlayerDead;
@@ -135,10 +141,4 @@ void SpaceGame::SpawnEnemy() {
         auto enemy = viper::Instantiate("enemy", transform);
         m_scene->AddActor(std::move(enemy));
     }
-}
-
-
-void SpaceGame::Shutdown()
-{
-    //
 }

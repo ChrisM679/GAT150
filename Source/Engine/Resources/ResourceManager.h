@@ -10,7 +10,7 @@
 namespace viper {
 	class ResourceManager : public Singleton<ResourceManager> {
 	public:
-		void Clear() {
+		void RemoveAll() {
 			m_resources.clear();
 		}
 
