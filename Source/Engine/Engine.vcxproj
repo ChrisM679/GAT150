@@ -206,6 +206,7 @@
     <ClCompile Include="Input\InputSystem.cpp" />
     <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Physics\Physics.cpp" />
+    <ClCompile Include="Physics\PhysicsBody.cpp" />
     <ClCompile Include="Renderer\Font.cpp" />
     <ClCompile Include="Renderer\Mesh.cpp" />
     <ClCompile Include="Renderer\ParticleSystem.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="Physics\Collidable.h" />
     <ClInclude Include="Physics\Physics.h" />
+    <ClInclude Include="Physics\PhysicsBody.h" />
     <ClInclude Include="Renderer\Font.h" />
     <ClInclude Include="Renderer\Mesh.h" />
     <ClInclude Include="Renderer\ParticleSystem.h" />

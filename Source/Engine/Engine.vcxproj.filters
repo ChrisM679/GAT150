@@ -125,6 +125,9 @@
     <ClCompile Include="Physics\Physics.cpp">
       <Filter>Source\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="Physics\PhysicsBody.cpp">
+      <Filter>Source\Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Random.h">
@@ -255,6 +258,9 @@
     </ClInclude>
     <ClInclude Include="EngineMinimal.h">
       <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PhysicsBody.h">
+      <Filter>Source\Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

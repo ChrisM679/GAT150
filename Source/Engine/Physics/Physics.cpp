@@ -1,6 +1,8 @@
 #include "Physics.h"
 
 namespace viper {
+	float ms_pixlesPerUnit = 48.0f;
+
 	bool Physics::Initialize() {
 		b2WorldDef worldDef = b2DefaultWorldDef();
 		worldDef.gravity = b2Vec2{ 0.0f, 10.0f };
@@ -12,6 +14,6 @@ namespace viper {
 		b2DestroyWorld(m_worldId);
 	}
 	void Physics::Update(float dt) {
-		b2World_Step(m_worldId, 1.0f, 60.0f, 4);
+		b2World_Step(m_worldId, 1.0f / 60.0f, 4);
 	}
 }

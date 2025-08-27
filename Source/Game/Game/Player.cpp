@@ -36,7 +36,7 @@ void Player::Update(float dt)
 	viper::vec2 force = direction.Rotate(viper::math::degToRad(owner->m_transform.rotation)) * thrust * speed;
     auto* rb = owner->GetComponent<viper::RigidBody>();
     if (rb) {
-        rb->velocity += force * dt;
+		rb->ApplyForce(force);
     }
 
 	owner->m_transform.position.x = viper::math::wrap(owner->m_transform.position.x, 0.0f, (float)viper::GetEngine().GetRenderer().GetWidth());
