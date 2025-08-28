@@ -2,6 +2,7 @@
 #include "SpaceGame.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "../GameData.h"
 
 bool SpaceGame::Initialize()
 {
@@ -133,7 +134,7 @@ void SpaceGame::OnPlayerDeath()
 }
 
 void SpaceGame::SpawnEnemy() {
-	viper::Actor* player = m_scene->GetActorByName<viper::Actor>("player");
+    viper::Actor* player = m_scene->GetActorByName<viper::Actor>("player");
     if (player) {
 		viper::vec2 positon = player->m_transform.position + viper::random::onUnitCircle() * viper::random::getReal(200.0f, 500.0f);
 		viper::Transform transform{ positon, viper::random::getReal(0.0f, 360.0f), 1.0f};
