@@ -69,26 +69,27 @@ namespace viper {
 	template<typename T>
 	requires std::derived_from<T, Object>
 	inline void Factory::Register(const std::string& name) {
-		std::string key = tolower(name);
+		std::string key = toLower(name);
 		m_registry[key] = std::make_unique<Creator<T>>();
 	}
 
 	template<typename T>
 	requires std::derived_from<T, Object>
 	inline void Factory::RegisterPrototype(const std::string& name, std::unique_ptr<T> prototype) {
-		std::string key = tolower(name);
+		std::string key = toLower(name);
 		m_registry[key] = std::make_unique<PrototypeCreator<T>>(std::move(prototype));
 	}
 
 	template<typename T>
 	requires std::derived_from<T, Object>
 	inline std::unique_ptr<T> Factory::Create(const std::string& name) {
-		std::string key = tolower(name);
+		std::string key = toLower(name);
 		auto it = m_registry.find(key);
 		if (it != m_registry.end()) {
 			auto object = it ->second->Create();
 			T* derived = dynamic_cast<T*>(object.get());
 			if (derived) {
+				object.release();
 				return std::unique_ptr<T>(derived);
 			}
 			Logger::Error("Factory: Created object of type '{}' but expected type '{}'", name, typeid(T).name());
@@ -110,7 +111,7 @@ namespace viper {
 		requires std::derived_from<T, Actor>
 	std::unique_ptr<T> Instantiate(const std::string& name, const vec2& position, float rotation, float scale) {
 		auto instance = Factory::Instance().Create<T>(name);
-		instance->transform = Transform{ position, rotation, scale };
+		instance->m_transform = Transform{ position, rotation, scale };
 		return instance;
 	}
 
@@ -118,7 +119,7 @@ namespace viper {
 		requires std::derived_from<T, Actor>
 	std::unique_ptr<T> Instantiate(const std::string& name, const Transform& transform) {
 		auto instance = Factory::Instance().Create<T>(name);
-		instance->transform = transform;
+		instance->m_transform = transform;
 		return instance;
 	}
 } 

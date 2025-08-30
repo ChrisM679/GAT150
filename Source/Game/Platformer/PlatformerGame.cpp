@@ -9,12 +9,7 @@ bool PlatformerGame::Initialize() {
 	m_scene->Load("scenes/prototypes.json");
 	m_scene->Load("scenes/level.json");
 
-	m_titleText = std::make_unique<viper::Text>(viper::Resources().GetWithID<viper::Font>("title_font", "Archeologicaps.ttf", 128.0f));
-	m_scoreText = std::make_unique<viper::Text>(viper::Resources().GetWithID<viper::Font>("ui_font", "Archeologicaps.ttf", 48.0f));
-	m_livesText = std::make_unique<viper::Text>(viper::Resources().GetWithID<viper::Font>("ui_font", "Archeologicaps.ttf", 48.0f));
-
 	return true;
-
 }
 
 void PlatformerGame::Update(float dt) {
@@ -70,8 +65,8 @@ void PlatformerGame::SpawnEnemy() {
 }
 
 void PlatformerGame::SpawnPlayer() {
-	auto player = viper::Instantiate("player");
-	player->m_transform.position = viper::vec2 { 200 , 200 };
+	auto player = viper::Instantiate("platformplayer");
+	player->m_transform.position = viper::vec2{ 200 , 200 };
 	m_scene->AddActor(std::move(player));
 }
 

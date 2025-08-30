@@ -24,7 +24,7 @@ namespace viper {
 		void RemoveAllActors(bool force = false);
 
 		template<typename T = Actor>
-		T* GetactorByName(const std::string& name);
+		T* GetActorByName(const std::string& name);
 
 		template<typename T = Actor>
 		std::vector<T*> GetActorsByTag(const std::string& tag);
@@ -37,10 +37,10 @@ namespace viper {
 	};
 
 	template<typename T>
-	inline T* Scene::GetactorByName(const std::string& name)
+	inline T* Scene::GetActorByName(const std::string& name)
 	{
 		for (auto& actor : m_actors) {
-			if (tolower(actor->name) == tolower(name)) {
+			if (toLower(actor->name) == toLower(name)) {
 				T* object = dynamic_cast<T*>(actor.get());
 				if (object) {
 					return object;
@@ -54,7 +54,7 @@ namespace viper {
 	inline std::vector<T*> Scene::GetActorsByTag(const std::string& tag) {
 		std::vector<T*> results;
 		for (auto& actor : m_actors) {
-			if (tolower(actor->tag) == tolower(tag)) {
+			if (toLower(actor->tag) == toLower(tag)) {
 				T* object = dynamic_cast<T*>(actor.get());
 				if (object) {
 					results.push_back(object);

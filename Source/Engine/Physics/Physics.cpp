@@ -1,7 +1,7 @@
 #include "Physics.h"
 
 namespace viper {
-	float ms_pixlesPerUnit = 48.0f;
+	float Physics::ms_pixlesPerUnit = 48.0f;
 
 	bool Physics::Initialize() {
 		b2WorldDef worldDef = b2DefaultWorldDef();

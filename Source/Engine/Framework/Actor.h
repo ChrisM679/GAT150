@@ -37,7 +37,7 @@ namespace viper {
 		virtual void Update(float dt);
 		virtual void Draw(class Renderer& renderer);
 
-		virtual void OnCollision(Actor* other) {}
+		virtual void OnCollision(Actor* other);
 
 		void AddComponent(std::unique_ptr<Component> component);
 

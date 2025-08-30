@@ -46,7 +46,7 @@ namespace viper {
     bool AudioSystem::AddSound(const char* filename, const std::string& name)
     {
         std::string key = name.empty() ? filename : name;
-        key = tolower(key);
+        key = toLower(key);
         if (m_sounds.find(key) != m_sounds.end()) {
             Logger::Error("SDL_Init Error: {}", SDL_GetError());
             return false;

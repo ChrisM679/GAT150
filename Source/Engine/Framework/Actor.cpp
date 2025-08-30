@@ -67,11 +67,11 @@ namespace viper {
 		JSON_READ(value, tag);
 		JSON_READ(value, lifespan);
 		JSON_READ(value, persistent);
-		if (JSON_HAS(value, m_transform)) m_transform.Read(JSON_GET(value, m_transform));
+		if (JSON_HAS(value, transform)) m_transform.Read(JSON_GET(value, transform));
 
 		// Read Components
-		if (JSON_HAS(value, m_components)) {
-			for (auto& componentValue : JSON_GET(value, m_components).GetArray()) {
+		if (JSON_HAS(value, components)) {
+			for (auto& componentValue : JSON_GET(value, components).GetArray()) {
 
 				std::string type;
 				JSON_READ(componentValue, type);

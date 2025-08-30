@@ -110,8 +110,8 @@ namespace viper
 		}
 
 		//Read Actor
-		if (JSON_HAS(value, m_actors)) {
-			for (auto& actorValue : JSON_GET(value, m_actors).GetArray()) {
+		if (JSON_HAS(value, actors)) {
+			for (auto& actorValue : JSON_GET(value, actors).GetArray()) {
 				auto actor = Factory::Instance().Create<Actor>("Actor");
 				actor->Read(actorValue);
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Object.h"
+#include "../Core/Factory.h"
 
 namespace viper {
 	class Component : public Object {

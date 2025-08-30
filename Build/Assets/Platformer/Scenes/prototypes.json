@@ -3,7 +3,6 @@
     {
       "name": "platformplayer",
       "tag": "player",
-      "lifespan": 4,
       "transform": {
         "position": [
           640,
@@ -25,7 +24,7 @@
         },
         {
           "type": "RigidBody",
-          "gravityScale": 0,
+          "gravityScale": 1.0,
           "constrainAngle": true,
           "shape": "capsule",
           "scale": [ 1, 1 ]

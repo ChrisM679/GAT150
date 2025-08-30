@@ -3,6 +3,7 @@
 FACTORY_REGISTER(EnemyController)
 
 void EnemyController::Start() {
+
 }
 
 void EnemyController::Update(float dt) {
@@ -10,6 +11,11 @@ void EnemyController::Update(float dt) {
 }
 
 void EnemyController::OnCollision(viper::Actor* other) {
+}
+
+void EnemyController::OnNotify(const viper::Event& event)
+{
+
 }
 
 void EnemyController::Read(const viper::json::value_t& value) {

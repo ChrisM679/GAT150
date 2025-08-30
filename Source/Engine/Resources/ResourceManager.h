@@ -41,7 +41,7 @@ namespace viper {
 	requires std::derived_from<T, Resource>
 	inline res_t<T> ResourceManager::GetWithID(const std::string& id, const std::string& name, Args && ...args)
 	{
-		std::string key = tolower(id);
+		std::string key = toLower(id);
 
 		auto iter = m_resources.find(key);
 		if (iter != m_resources.end()) {

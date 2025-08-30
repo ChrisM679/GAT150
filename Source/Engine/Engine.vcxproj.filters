@@ -101,9 +101,6 @@
     <ClCompile Include="Core\Json.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Components\MeshRenderer.h">
-      <Filter>Source\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Components\MeshRenderer.cpp">
       <Filter>Source\Components</Filter>
     </ClCompile>
@@ -261,6 +258,9 @@
     </ClInclude>
     <ClInclude Include="Physics\PhysicsBody.h">
       <Filter>Source\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshRenderer.h">
+      <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

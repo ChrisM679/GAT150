@@ -1,5 +1,8 @@
 #pragma once
-#include "Framework/Component.h"
+#include "Components/RigidBody.h"
+#include "Physics/Collidable.h"
+#include "Event/Observer.h"
+#include "Event/Event.h"
 
 class EnemyController : public viper::Component, public viper::ICollidable, public viper::IObserver {
 public:

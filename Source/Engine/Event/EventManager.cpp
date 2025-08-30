@@ -3,7 +3,7 @@
 
 namespace viper {
 	void EventManager::AddObserver(const Event::id_t& id, IObserver& observer) {
-		m_observers[tolower(id)].push_back(&observer);
+		m_observers[toLower(id)].push_back(&observer);
 	}
 
 	void EventManager::RemoveObserver(IObserver& observer) {
@@ -19,7 +19,7 @@ namespace viper {
 	}
 
 	void EventManager::Notify(const Event& event) {
-		auto it = m_observers.find(tolower(event.id));
+		auto it = m_observers.find(toLower(event.id));
 		if (it != m_observers.end()) {
 			auto& observers = it->second;
 			for (auto observer : observers) {

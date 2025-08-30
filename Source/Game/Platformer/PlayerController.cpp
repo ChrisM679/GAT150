@@ -3,6 +3,7 @@
 FACTORY_REGISTER(PlayerController)
 
 void PlayerController::Start() {
+
 }
 
 void PlayerController::Update(float dt) {
@@ -20,6 +21,7 @@ void PlayerController::Update(float dt) {
 }
 
 void PlayerController::OnCollision(viper::Actor* other) {
+
 }
 
 void PlayerController::Read(const viper::json::value_t& value) {
