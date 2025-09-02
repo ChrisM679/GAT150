@@ -3,7 +3,7 @@
 FACTORY_REGISTER(PlayerController)
 
 void PlayerController::Start() {
-
+	m_rigidbody = owner->GetComponent<viper::RigidBody>();
 }
 
 void PlayerController::Update(float dt) {
