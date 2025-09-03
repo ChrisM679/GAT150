@@ -35,9 +35,13 @@ namespace viper {
 
     vec2 Texture::GetSize()
     {
+        if (!m_texture) {
+            Logger::Error("Attempted to get size of a null texture.");
+            return vec2(0.0f, 0.0f);
+        }
+
         float w = 0.0f, h = 0.0f;
         SDL_GetTextureSize(m_texture, &w, &h);
         return vec2(w, h);
-
     }
 }

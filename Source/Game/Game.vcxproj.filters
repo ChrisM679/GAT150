@@ -92,7 +92,7 @@
     <None Include="..\..\Build\Assets\Platformer\Scenes\prototypes.json">
       <Filter>Assets\Platformer</Filter>
     </None>
-    <None Include="..\..\Build\Assets\Platformer\Animation\bat_idle.json">
+    <None Include="..\..\Build\Assets\Platformer\Tilemaps\tilemap.json">
       <Filter>Assets\Platformer</Filter>
     </None>
   </ItemGroup>

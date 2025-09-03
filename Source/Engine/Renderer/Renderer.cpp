@@ -107,7 +107,12 @@ namespace viper {
     }
 
     void Renderer::DrawTexture(Texture& texture, const rect& sourceRect, float x, float y, float angle, float scale) {
-        SDL_FRect srcRect{ sourceRect.x, sourceRect.y, sourceRect.w, sourceRect.h };
+
+        SDL_FRect srcRect;
+        srcRect.x = sourceRect.x;
+        srcRect.y = sourceRect.y;
+        srcRect.w = sourceRect.w;
+        srcRect.h = sourceRect.h;
 
         SDL_FRect destRect;
         destRect.w = srcRect.w * scale;
