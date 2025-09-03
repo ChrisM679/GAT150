@@ -63,41 +63,25 @@
       ]
     },
     {
-      "name": "platformenemy_bat",
-      "tag": "enemy_bat",
+      "name": "bat",
+      "tag": "enemy",
       "transform": {
-        "position": [
-          640,
-          512
-        ],
+        "position": [ 740, 500 ],
         "rotation": 0,
-        "scale": 1
+        "scale": 5
       },
       "components": [
         {
-          "type": "Enemy_batController",
-          "speed": 70,
-          "maxSpeed": 100,
-          "jump": 5001
+          "type": "SpriteRenderer"
         },
         {
-          "type": "SpriteRenderer",
-          "texture_name": "textures/bat.png"
-        },
-        {
-          "type": "RigidBody",
-          "gravityScale": 1.0,
-          "constrainAngle": true,
-          "shape": "circle",
-          "scale": [ 1, 1 ],
-          
-          "columns": 4,
-          "rows": 1,
-          "start_frame": 0,
-          "total_frames": 4,
-          "frames_per_second": 10,
-          "loop": true
-
+          "type": "Animator",
+          "animations": [
+            {
+              "name": "idle",
+              "texture_animation": "animation/bat_idle.json"
+            }
+          ]
         }
       ]
     }

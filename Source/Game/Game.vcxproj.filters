@@ -92,6 +92,9 @@
     <None Include="..\..\Build\Assets\Platformer\Scenes\prototypes.json">
       <Filter>Assets\Platformer</Filter>
     </None>
+    <None Include="..\..\Build\Assets\Platformer\Animation\bat_idle.json">
+      <Filter>Assets\Platformer</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\Build\Assets\Meshes\enemy.txt">

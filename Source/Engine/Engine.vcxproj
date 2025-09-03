@@ -181,6 +181,7 @@
   <ItemGroup>
     <ClCompile Include="Audio\AudioClip.cpp" />
     <ClCompile Include="Audio\AudioSystem.cpp" />
+    <ClCompile Include="Components\Animator.cpp" />
     <ClCompile Include="Components\AudioSource.cpp" />
     <ClCompile Include="Components\CircleCollider2D.cpp" />
     <ClCompile Include="Components\MeshRenderer.cpp">
@@ -222,6 +223,7 @@
   <ItemGroup>
     <ClInclude Include="Audio\AudioClip.h" />
     <ClInclude Include="Audio\AudioSystem.h" />
+    <ClInclude Include="Components\Animator.h" />
     <ClInclude Include="Components\AudioSource.h" />
     <ClInclude Include="Components\CircleCollider2D.h" />
     <ClInclude Include="Components\ColliderComponent.h" />

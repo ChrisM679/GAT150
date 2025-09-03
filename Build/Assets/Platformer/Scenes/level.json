@@ -62,8 +62,8 @@
       "persistent": true,
       "transform": {
         "position": [
-          640,
-          500
+          800,
+          600
         ],
         "rotation": 0,
         "scale": 1
@@ -75,7 +75,7 @@
         },
         {
           "type": "RigidBody",
-          "restitution": 0.8
+          "restitution": 0
         }
       ]
     },
@@ -84,8 +84,8 @@
       "persistent": true,
       "transform": {
         "position": [
-          540,
-          500
+          500,
+          600
         ],
         "rotation": 0,
         "scale": 1
@@ -97,7 +97,7 @@
         },
         {
           "type": "RigidBody",
-          "restitution": 0.8
+          "restitution": 0
         }
       ]
     }

@@ -63,14 +63,15 @@ void PlatformerGame::OnPlayerDeath() {
 }
 
 void PlatformerGame::SpawnEnemy() {
-	auto enemy = viper::Instantiate("platformenemy");
-	//enemy->m_transform.position = viper::vec2{ 600 , 200 };
+	//auto enemy = viper::Instantiate("platformenemy");
+	auto enemy = viper::Instantiate("bat");
+	enemy->m_transform.position = viper::vec2{ 900 , 400 };
 	m_scene->AddActor(std::move(enemy));
 }
 
 void PlatformerGame::SpawnPlayer() {
 	auto player = viper::Instantiate("platformplayer");
-	//player->m_transform.position = viper::vec2{ 600 , 200 };
+	player->m_transform.position = viper::vec2{ 500 , 400 };
 	m_scene->AddActor(std::move(player));
 }
 
