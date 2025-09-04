@@ -1,34 +1,29 @@
-#include "EnemyController.h"
+#include "FlyingEnemyController.h"
 
-FACTORY_REGISTER(EnemyController)
+FACTORY_REGISTER(FlyingEnemyController)
 
-void EnemyController::Start() {
+void FlyingEnemyController::Start() {
 	m_rigidbody = owner->GetComponent<viper::RigidBody>();
 }
 
-void EnemyController::Update(float dt) {
-	float dir = 0;
-	
+void FlyingEnemyController::Update(float dt) {
+
 	auto player = owner->m_scene->GetActorByName<viper::Actor>("platformplayer");
 	if (player) {
 		viper::vec2 direction = player->m_transform.position - owner->m_transform.position;
 		m_rigidbody->ApplyForce(direction);
 	}
-
-	if (dir != 0) {
-		m_rigidbody->ApplyForce(viper::vec2{ 1 , 0 } *dir * 1000);
-	}
 }
 
-void EnemyController::OnCollision(viper::Actor* other) {
-	//
-}
-
-void EnemyController::OnNotify(const viper::Event& event) {
+void FlyingEnemyController::OnCollision(viper::Actor* other) {
 
 }
 
-void EnemyController::Read(const viper::json::value_t& value) {
+void FlyingEnemyController::OnNotify(const viper::Event& event) {
+
+}
+
+void FlyingEnemyController::Read(const viper::json::value_t& value) {
 	Object::Read(value);
 
 	JSON_READ(value, speed);

@@ -74,7 +74,11 @@ namespace viper {
 		b2Body_ApplyTorque(m_bodyId, radians, true);
 	}
 
-	void PhysicsBody::SetLinearVelocity(const vec2& velocity) {
+	void PhysicsBody::SetVelocity(const vec2& velocity) {
 		b2Body_SetLinearVelocity(m_bodyId, to_b2(Physics::PixelToWorld(velocity)));
+	}
+	vec2 PhysicsBody::GetVelocity()
+	{
+		return Physics::WorldToPixel(to_vec2(b2Body_GetLinearVelocity(m_bodyId)));
 	}
 }

@@ -21,6 +21,42 @@
       "persistent": true,
       "transform": {
         "position": [
+          260,
+          640
+        ],
+        "rotation": 0,
+        "scale": 0.2
+      },
+      "components": [
+        {
+          "type": "SpriteRenderer",
+          "texture_name": "textures/tree01.png"
+        }
+      ]
+    },
+    {
+      "persistent": true,
+      "transform": {
+        "position": [
+          1060,
+          640
+        ],
+        "rotation": 0,
+        "scale": 0.2
+      },
+      "components": [
+        {
+          "type": "SpriteRenderer",
+          "texture_name": "textures/tree01.png"
+        }
+      ]
+    },
+    {
+      "name": "ground_tilemap",
+      "tag": "ground",
+      "persistent": true,
+      "transform": {
+        "position": [
           0,
           0
         ],
@@ -31,23 +67,6 @@
         {
           "type": "TilemapRenderer",
           "tilemap_name": "tilemaps/tilemap.json"
-        }
-      ]
-    },
-    {
-      "persistent": true,
-      "transform": {
-        "position": [
-          460,
-          640
-        ],
-        "rotation": 0,
-        "scale": 0.2
-      },
-      "components": [
-        {
-          "type": "SpriteRenderer",
-          "texture_name": "textures/tree01.png"
         }
       ]
     },

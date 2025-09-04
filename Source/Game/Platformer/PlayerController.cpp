@@ -12,11 +12,18 @@ void PlayerController::Update(float dt) {
 	if (viper::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_D)) { dir += 1; }
 
 	if (dir != 0) {
-		m_rigidbody->ApplyForce(viper::vec2{ 1 , 0 } * dir * 1000);
+		m_rigidbody->ApplyForce(viper::vec2{ 1 , 0 } * dir * 5000);
 	}
 
 	if (viper::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE)) {
-		m_rigidbody->ApplyForce(viper::vec2{ 0, -1 } * 100000);
+		m_rigidbody->ApplyForce(viper::vec2{ 0, -1 } * 500000);
+	}
+
+	auto spriteRenderer = owner->GetComponent<viper::SpriteRenderer>();
+	if (spriteRenderer) {
+		if (viper::math::fabs(m_rigidbody->velocity.x) > 0.1f) {
+			spriteRenderer->flipH = (m_rigidbody->velocity.x < 0);
+		}
 	}
 }
 

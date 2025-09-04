@@ -7,6 +7,7 @@ namespace viper {
 		std::string textureName;
 		rect textureRect;
 		res_t<Texture> texture;
+		bool flipH = false;
 
 		CLASS_PROTOTYPE(SpriteRenderer)
 

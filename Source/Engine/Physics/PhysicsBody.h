@@ -37,7 +37,8 @@ namespace viper {
 		void ApplyForce(const vec2& force);
 		void ApplyTorque(float radians);
 
-		void SetLinearVelocity(const vec2& velocity);
+		void SetVelocity(const vec2& velocity);
+		vec2 GetVelocity();
 
 	private:
 		b2BodyId m_bodyId{ b2_nullBodyId };

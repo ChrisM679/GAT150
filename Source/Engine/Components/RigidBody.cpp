@@ -27,6 +27,7 @@ namespace viper {
 	void viper::RigidBody::Update(float dt) {
 		owner->m_transform.position = m_physicsBody->GetPosition();
 		owner->m_transform.rotation = math::radToDeg(m_physicsBody->GetAngle());
+		velocity = m_physicsBody->GetVelocity();
 
 		//owner->m_transform.position += velocity * dt;
 		//velocity *= (1.0f / (1.0f + damping * dt));
@@ -40,8 +41,8 @@ namespace viper {
 		m_physicsBody->ApplyTorque(radians);
 	}
 
-	void RigidBody::SetLinearVelocity(const vec2& velocity) {
-		m_physicsBody->SetLinearVelocity(velocity);
+	void RigidBody::SetVelocity(const vec2& velocity) {
+		m_physicsBody->SetVelocity(velocity);
 	}
 
 	void RigidBody::Read(const json::value_t& value) {

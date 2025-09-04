@@ -199,6 +199,7 @@
     <ClCompile Include="Game\SpaceGame.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Platformer\EnemyController.cpp" />
+    <ClCompile Include="Platformer\FlyingEnemyController.cpp" />
     <ClCompile Include="Platformer\PlatformerGame.cpp" />
     <ClCompile Include="Platformer\PlayerController.cpp" />
     <ClCompile Include="Rocket.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="Game\Player.h" />
     <ClInclude Include="Game\SpaceGame.h" />
     <ClInclude Include="Platformer\EnemyController.h" />
+    <ClInclude Include="Platformer\FlyingEnemyController.h" />
     <ClInclude Include="Platformer\PlatformerGame.h" />
     <ClInclude Include="Platformer\PlayerController.h" />
     <ClInclude Include="Rocket.h" />
