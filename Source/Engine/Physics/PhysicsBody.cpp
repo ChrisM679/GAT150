@@ -24,6 +24,9 @@ namespace viper {
 		shapeDef.density = def.density;
 		shapeDef.isSensor = def.isSensor;
 
+		shapeDef.enableSensorEvents = true;
+		shapeDef.enableContactEvents = true;
+
 		// create shape
 		b2Vec2 hsize = to_b2(Physics::PixelToWorld(size * transform.scale * 0.5f));
 		switch (def.shape)

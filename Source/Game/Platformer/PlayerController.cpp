@@ -16,7 +16,7 @@ void PlayerController::Update(float dt) {
 	}
 
 	if (viper::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE)) {
-		m_rigidbody->ApplyForce(viper::vec2{ 0, -1 } * 10000);
+		m_rigidbody->ApplyForce(viper::vec2{ 0, -1 } * 100000);
 	}
 }
 
