@@ -28,7 +28,7 @@ namespace viper
 				iter++;
 			}
 		}*/
-
+		/*
 		for (auto& actorA : m_actors) {
 			for (auto& actorB : m_actors) {
 
@@ -48,6 +48,7 @@ namespace viper
 
 			}
 		}
+		*/
 	}
 	/// <summary>
 	/// Draws all actors in the scene using the specified renderer.

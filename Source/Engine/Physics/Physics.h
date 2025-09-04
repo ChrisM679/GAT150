@@ -25,6 +25,8 @@ namespace viper {
 	private:
 		friend class PhysicsBody;
 
+		void ProcessCollisionEvent();
+
 		b2WorldId m_worldId;
 	};
 }

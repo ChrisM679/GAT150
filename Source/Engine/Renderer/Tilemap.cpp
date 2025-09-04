@@ -37,7 +37,7 @@ namespace viper {
 
 							layer.texture = Resources().Get<Texture>(value, renderer);
 							if (!layer.texture) {
-								Logger::Error("Could not load Tilemap texture {}", value);
+								Logger::Warning("Could not load Tilemap texture {}", value);
 							}
 						}
 					}

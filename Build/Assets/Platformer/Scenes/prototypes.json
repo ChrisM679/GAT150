@@ -16,7 +16,7 @@
           "type": "PlayerController",
           "speed": 70,
           "maxSpeed": 100,
-          "jump": 500
+          "jump": 10000
         },
         {
           "type": "SpriteRenderer",
