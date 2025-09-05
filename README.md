@@ -22,13 +22,8 @@
 - Save/load mechanics, level editor tools, power-ups, or other enhancements.
 
 ## Screenshots
-*(Add actual screenshots into your repository, ideally within an `images/` folder.)*
+<img width="1283" height="1058" alt="Screenshot 2025-09-04 184252" src="https://github.com/user-attachments/assets/46115976-6c66-4834-995e-bb89c03cb4dd" />
 
-![Gameplay Screenshot](images/screenshot1.png)  
-*Caption: A view of the main gameplay screen.*
-
-![Level Design Screenshot](images/screenshot2.png)  
-*Caption: Level layout and tile rendering.*
 
 ## Building & Running the Project
 
