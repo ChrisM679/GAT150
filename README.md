@@ -1,0 +1,50 @@
+# GAT150
+
+## Description
+**GAT150** is a game project developed using C++ and Visual Studio (solution file `GAT150.sln` included). The repository forms part of the GAT 150 course curriculum and demonstrates core game-engine mechanics and fundamental game design principles.
+
+## Core Features
+- **Character Movement & Input**  
+  Responsive player control via keyboard input (arrow keys/WASD).  
+- **Collision Detection**  
+  Includes basic collision handling between the player and the game environment.  
+- **Rendering**  
+  2D sprite rendering and tile-based environment drawing.  
+- **Audio Support**  
+  Background music and sound effects (if implemented).  
+- **User Interface (UI)**  
+  Basic UI components such as menus, score/hud display, etc.
+
+## Additional Features (If Applicable)
+- Level loading from configuration files (e.g., text or JSON-based levels).  
+- Enemy AI (patrol behaviors, chasing).  
+- Particle effects (explosions, visual feedback).  
+- Save/load mechanics, level editor tools, power-ups, or other enhancements.
+
+## Screenshots
+*(Add actual screenshots into your repository, ideally within an `images/` folder.)*
+
+![Gameplay Screenshot](images/screenshot1.png)  
+*Caption: A view of the main gameplay screen.*
+
+![Level Design Screenshot](images/screenshot2.png)  
+*Caption: Level layout and tile rendering.*
+
+## Building & Running the Project
+
+### Prerequisites
+- **Development Tools**: Visual Studio (2017 or newer) with C++ support enabled.  
+- **Platform**: Windows 10 (or newer).  
+- **Dependencies**: Ensure any external libraries (SDL, audio engine, etc.) are installed and linked.
+
+### Build Instructions
+```bash
+# Clone your repository
+git clone https://github.com/ChrisM679/GAT150.git
+cd GAT150
+
+# Open the solution in Visual Studio
+# GAT150.sln
+
+# Build the solution (e.g., via "Build Solution" in VS menu)
+# Then run the resulting executable (within Debug or Release folder)
