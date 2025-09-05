@@ -15,11 +15,8 @@
 - **User Interface (UI)**  
   Basic UI components such as menus, score/hud display, etc.
 
-## Additional Features (If Applicable)
-- Level loading from configuration files (e.g., text or JSON-based levels).  
-- Enemy AI (patrol behaviors, chasing).  
-- Particle effects (explosions, visual feedback).  
-- Save/load mechanics, level editor tools, power-ups, or other enhancements.
+## Additional Features
+- Enemy AI (patrol behaviors, chasing).   
 
 ## Screenshots
 <img width="1283" height="1058" alt="Screenshot 2025-09-04 184252" src="https://github.com/user-attachments/assets/46115976-6c66-4834-995e-bb89c03cb4dd" />
